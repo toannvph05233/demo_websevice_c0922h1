@@ -13,19 +13,21 @@ public class BlogService {
     @Autowired
     IBlogRepo iBlogRepo;
 
-    public Page<Blog> getAll(Pageable pageable){
+    public Page<Blog> getAll(Pageable pageable) {
         return iBlogRepo.findAll(pageable);
     }
 
-    public void save(Blog blog){
-        iBlogRepo.save(blog);
+    public Blog save(Blog blog) {
+        return iBlogRepo.save(blog);
     }
 
-    public void delete(int id){
+    public Blog delete(int id) {
+        Blog blog = findById(id);
         iBlogRepo.deleteById(id);
+        return blog;
     }
 
-    public Blog findById(int id){
+    public Blog findById(int id) {
         return iBlogRepo.findById(id).get();
     }
 
